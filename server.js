@@ -16,10 +16,10 @@ wss.on("connection", function (ws) {
   clients.push({"id": id , "ws": ws, "nickname": nickname});
   console.log('client [%s] connected', id);
   clientIndex++;
-  var date = new Date();
-  var date_str = date.getHours() + ":" + date.getMinutes();
 
   ws.on("message", function (data) {
+    var date = new Date();
+    var date_str = date.getHours() + ":" + date.getMinutes();
     var data_str = data.toString();
     if (data_str.indexOf("changeNickname") == 0) {
       var nick_arr = data_str.split(" ");
