@@ -25,7 +25,7 @@ ws.onmessage = function(event) {
         <small class="message-time">${data_obj.date}</small>
     </div>
     `;
-    $('.message-list').append(html);
+    $('.message-list').prepend(html);
   }
 }
 

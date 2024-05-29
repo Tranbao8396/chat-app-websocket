@@ -9,11 +9,13 @@
 
 .message-list {
     padding: 10px;
-    overflow-y: auto;
+    overflow: auto;
     height: 1px;
     margin-bottom: 10px;
     background-color: #fff;
     flex: 1 0 auto;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .message-line .d-inline-block {
