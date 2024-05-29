@@ -19,7 +19,6 @@ wss.on("connection", function (ws) {
 
   ws.on("message", function (data) {
     var date = new Date();
-    var date_str = date.getHours() + ":" + date.getMinutes();
     var data_str = data.toString();
     if (data_str.indexOf("changeNickname") == 0) {
       var nick_arr = data_str.split(" ");
@@ -33,7 +32,7 @@ wss.on("connection", function (ws) {
             "id": id,
             "nickname": nickname,
             "message": nickname_message,
-            'date': date_str
+            'date': date.getHours().toString().padStart(2, '0') + ":" + date.getMinutes().toString().padStart(2, '0')
           }));
         }
       }
@@ -45,7 +44,7 @@ wss.on("connection", function (ws) {
             "id": id,
             "nickname": nickname,
             "message": data_str,
-            'date': date_str
+            'date': date.getHours().toString().padStart(2, '0') + ":" + date.getMinutes().toString().padStart(2, '0')
           }));
         }
       }
