@@ -1,4 +1,4 @@
-const ws = new WebSocket("ws://localhost:8080");
+const ws = new WebSocket("ws://192.168.1.31:8080");
 
 ws.onopen = function (e) {
   console.log("Connection to server opened");
