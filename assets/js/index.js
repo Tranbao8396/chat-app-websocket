@@ -2,7 +2,19 @@
 const ws = new WebSocket("ws://192.168.1.31:8080");
 // Connection opened
 ws.onopen = function(e) {
-  console.log('Connection to server opened' );
+  if (!("Notification" in window)) {
+    alert("This browser does not support desktop notification");
+  } else if (Notification.permission === "granted") {
+    // If it's okay let's create a notification
+    var notification = new Notification('Connection to ws server opened');
+  } else if (Notification.permission !== 'denied') {
+    Notification.requestPermission(function (permission) {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+        var notification = new Notification('Connection to ws server opened');
+      }
+    });
+  }
 }
 var initial_id;
 
@@ -26,6 +38,22 @@ ws.onmessage = function(event) {
     </div>
     `;
     $('.message-list').prepend(html);
+
+    if (initial_id != id) {
+      if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+      } else if (Notification.permission === "granted") {
+        // If it's okay let's create a notification
+        var notification = new Notification(`${name} Says : ${message}`);
+      } else if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function (permission) {
+          // If the user accepts, let's create a notification
+          if (permission === "granted") {
+            var notification = new Notification(`${name} Says : ${message}`);
+          }
+        });
+      }
+    }
   }
 }
 
